@@ -1,3 +1,20 @@
-# com.unity.demoteam.attributes
+# Package: com.unity.demoteam.attributes
 
-Library of attributes common to packages in 'com.unity.demoteam'.
+Library of attributes common to packages in `com.unity.demoteam.*`.
+
+
+## Requirements
+
+- Unity 2019.3.0f3 +
+
+
+## Usage
+
+Declare the package as a dependency in `Packages/manifest.json`:
+
+```
+"dependencies": {
+    "com.unity.demoteam.attributes": "https://github.com/Unity-Technologies/com.unity.demoteam.attributes.git"
+    ...
+}
+```
