@@ -14,7 +14,7 @@ Declare the package as a dependency in `Packages/manifest.json`:
 
 ```
 "dependencies": {
-    "com.unity.demoteam.attributes": "https://github.com/Unity-Technologies/com.unity.demoteam.attributes.git"
+    "com.unity.demoteam.attributes": "https://github.com/Unity-Technologies/com.unity.demoteam.attributes.git",
     ...
 }
 ```
