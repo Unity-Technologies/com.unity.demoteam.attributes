@@ -10,7 +10,7 @@ Library of attributes common to packages in `com.unity.demoteam.*`.
 
 ## Usage
 
-Declare the package as a dependency in `Packages/manifest.json`:
+Declare the package as a git dependency in `Packages/manifest.json`:
 
 ```
 "dependencies": {
