@@ -57,17 +57,28 @@ namespace Unity.DemoTeam.Attributes
 			var attrib = (CmpFieldAttribute)base.attribute;
 			if (attrib.fieldName.Length > 0)
 			{
-				var serializedPath = property.propertyPath.Substring(0, property.propertyPath.LastIndexOf('.') + 1);
-				var serializedValue = property.serializedObject.FindProperty(serializedPath + attrib.fieldName);
-				if (serializedValue != null)
+				SerializedProperty searchProperty;
+
+				var searchPath = property.propertyPath;
+				int searchPathDelim = searchPath.LastIndexOf('.');
+				if (searchPathDelim == -1)
+				{
+					searchProperty = property.serializedObject.FindProperty(attrib.fieldName);
+				}
+				else
+				{
+					searchProperty = property.serializedObject.FindProperty(searchPath.Substring(0, searchPathDelim)).FindPropertyRelative(attrib.fieldName);
+				}
+
+				if (searchProperty != null)
 				{
 					switch (attrib.cmpType)
 					{
 						case TypeCode.Boolean:
-							if (serializedValue.propertyType == SerializedPropertyType.ObjectReference)
-								result = Compare(attrib.cmpOp, serializedValue.objectReferenceValue != null, (bool)attrib.cmpValue);
+							if (searchProperty.propertyType == SerializedPropertyType.ObjectReference)
+								result = Compare(attrib.cmpOp, searchProperty.objectReferenceValue != null, (bool)attrib.cmpValue);
 							else
-								result = Compare(attrib.cmpOp, serializedValue.boolValue, (bool)attrib.cmpValue);
+								result = Compare(attrib.cmpOp, searchProperty.boolValue, (bool)attrib.cmpValue);
 							break;
 
 						case TypeCode.Byte:
@@ -76,24 +87,24 @@ namespace Unity.DemoTeam.Attributes
 						case TypeCode.Int32:
 						case TypeCode.UInt16:
 						case TypeCode.UInt32:
-							result = Compare(attrib.cmpOp, serializedValue.intValue, (int)attrib.cmpValue);
+							result = Compare(attrib.cmpOp, searchProperty.intValue, (int)attrib.cmpValue);
 							break;
 
 						case TypeCode.Int64:
 						case TypeCode.UInt64:
-							result = Compare(attrib.cmpOp, serializedValue.longValue, (long)attrib.cmpValue);
+							result = Compare(attrib.cmpOp, searchProperty.longValue, (long)attrib.cmpValue);
 							break;
 
 						case TypeCode.Single:
-							result = Compare(attrib.cmpOp, serializedValue.floatValue, (float)attrib.cmpValue);
+							result = Compare(attrib.cmpOp, searchProperty.floatValue, (float)attrib.cmpValue);
 							break;
 
 						case TypeCode.Double:
-							result = Compare(attrib.cmpOp, serializedValue.doubleValue, (double)attrib.cmpValue);
+							result = Compare(attrib.cmpOp, searchProperty.doubleValue, (double)attrib.cmpValue);
 							break;
 
 						case TypeCode.Empty:
-							result = Compare(attrib.cmpOp, serializedValue.objectReferenceValue != null, true);
+							result = Compare(attrib.cmpOp, searchProperty.objectReferenceValue != null, true);
 							break;
 
 						default:
