@@ -23,7 +23,7 @@ namespace Unity.DemoTeam.Attributes
 		public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
 		{
 			var enabled = GUI.enabled;
-			GUI.enabled = base.Compare(property);
+			GUI.enabled = base.Compare(property) && enabled;
 			EditorGUI.PropertyField(rect, property, true);
 			GUI.enabled = enabled;
 		}
