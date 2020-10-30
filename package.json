@@ -3,5 +3,6 @@
   "displayName": "Demo Team Attributes",
   "version": "0.1.1-preview",
   "unity": "2019.3",
+  "unityRelease": "3f1",
   "description": "Library of attributes common to packages in 'com.unity.demoteam'."
 }
