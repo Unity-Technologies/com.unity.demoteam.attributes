@@ -22,7 +22,7 @@ namespace Unity.DemoTeam.Attributes
 		{
 			var enabled = GUI.enabled;
 			GUI.enabled = false;
-			EditorGUI.PropertyField(rect, property, true);
+			EditorGUI.PropertyField(rect, property, label, true);
 			GUI.enabled = enabled;
 		}
 	}

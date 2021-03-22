@@ -28,7 +28,7 @@ namespace Unity.DemoTeam.Attributes
 			if (rect.height <= 0.0f)
 				return;
 			if (base.Compare(property))
-				EditorGUI.PropertyField(rect, property, true);
+				EditorGUI.PropertyField(rect, property, label, true);
 		}
 	}
 #endif

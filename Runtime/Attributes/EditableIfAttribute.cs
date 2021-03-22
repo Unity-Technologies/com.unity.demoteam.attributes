@@ -24,7 +24,7 @@ namespace Unity.DemoTeam.Attributes
 		{
 			var enabled = GUI.enabled;
 			GUI.enabled = base.Compare(property) && enabled;
-			EditorGUI.PropertyField(rect, property, true);
+			EditorGUI.PropertyField(rect, property, label, true);
 			GUI.enabled = enabled;
 		}
 	}
